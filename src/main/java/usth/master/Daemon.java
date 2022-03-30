@@ -30,6 +30,11 @@ public interface Daemon extends Remote {
 
     /**
      * Call map execution.
+     * @param m map execution interface
+     * @param blockin filename of input map
+     * @param blockout filename of output map
+     * @param cb callback to notify master after finishing task
      * */
-    void call() throws RemoteException;
+    void call(MapReduce m, String blockin, String blockout, CallBack cb)
+            throws RemoteException;
 }
