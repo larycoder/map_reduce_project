@@ -1,4 +1,4 @@
-package usth.master.impl;
+package usth.master.common;
 
 import java.io.File;
 import java.io.FileInputStream;

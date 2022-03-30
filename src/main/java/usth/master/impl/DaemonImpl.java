@@ -1,10 +1,14 @@
 package usth.master.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import usth.master.CallBack;
 import usth.master.Daemon;
+import usth.master.MapReduce;
+import usth.master.common.FileDeliver;
 
 public class DaemonImpl extends UnicastRemoteObject implements Daemon {
     public static final String root = "data";
@@ -41,7 +45,14 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
         }
     }
 
-    public void call() throws RemoteException {
+    public void call(MapReduce m, String blockin, String blockout, CallBack cb)
+    throws RemoteException {
+        // prepare
+        String input = root + "/" + blockin;
+        String output = root + "/" + blockout;
+        File output = new File();
+        m.executeMap(blockin, blockout);
     }
+
 
 }
