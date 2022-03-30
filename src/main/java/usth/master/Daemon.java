@@ -1,4 +1,4 @@
-package usth.master.map;
+package usth.master;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
  * 3. Launch connect (TCP) to Daemon in order to download a block of data
  *    (result).
  * */
-public interface Worker extends Remote {
+public interface Daemon extends Remote {
     /**
      * Upload data to server.
      * @param file upload file name.
