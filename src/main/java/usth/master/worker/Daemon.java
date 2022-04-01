@@ -1,7 +1,10 @@
-package usth.master;
+package usth.master.worker;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import usth.master.app.MapReduce;
+import usth.master.common.CallBack;
 
 /**
  * Run on slave node to execute Map on the node.

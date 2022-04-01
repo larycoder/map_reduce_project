@@ -1,4 +1,4 @@
-package usth.master;
+package usth.master.app;
 
 import java.io.Serializable;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package usth.master.app;
+package usth.master.app.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import usth.master.MapReduce;
+import usth.master.app.MapReduce;
 
 class WordCount implements MapReduce {
     public static final String SEPARATOR = " - ";

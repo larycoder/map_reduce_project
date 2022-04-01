@@ -1,9 +1,9 @@
-package usth.master.impl;
+package usth.master.common.impl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import usth.master.CallBack;
+import usth.master.common.CallBack;
 
 class CallBackImpl extends UnicastRemoteObject implements CallBack {
     int nbNode;
