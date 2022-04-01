@@ -57,8 +57,9 @@ public class FileDeliver extends Thread {
             }
 
             byte[] data = new byte[1000];
-            while(is.read(data) > 0) {
-                os.write(data);
+            int len;
+            while((len = is.read(data)) > 0) {
+                os.write(data, 0, len);
             }
 
             is.close();
