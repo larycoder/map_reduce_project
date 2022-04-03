@@ -10,8 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * handle stream data from client to server including upload/download
- * file to/from server.
+ * Server side class that handle stream data from client to server
+ * including upload/download file to/from server.
  *
  * */
 public class FileDeliver extends Thread {

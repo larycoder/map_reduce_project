@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import usth.master.common.ClientTransfer;
 import usth.master.worker.Daemon;
 
 /**
@@ -37,24 +38,7 @@ public class Split {
      * @param data data to push into servers
      * */
     private boolean push(Map<String, String> host, String file, String data) {
-        try {
-            String rmiUrl = "rmi://"
-                            + host.get("host") + ":"
-                            + host.get("port") + "/"
-                            + host.get("name");
-            Daemon server = (Daemon) Naming.lookup(rmiUrl);
-
-            int port = server.upload(file);
-            Socket svc = new Socket(host.get("host"), port);
-
-            OutputStream os = svc.getOutputStream();
-            os.write(data.getBytes());
-            os.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        return ClientTransfer.push(host, file, data);
     }
 
     /**
@@ -114,6 +98,4 @@ public class Split {
         }
         return info;
     }
-
-
 }
