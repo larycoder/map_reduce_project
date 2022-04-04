@@ -29,7 +29,7 @@ public class Launch {
      * */
     public Launch(
         List<Map<String, String>> hosts, Map<String, String> hostFiles,
-        String rootDir, MapReduce m) {
+        String rootDir) {
         this.hosts = hosts;
         this.hostFiles = hostFiles;
         this.rootDir = rootDir;

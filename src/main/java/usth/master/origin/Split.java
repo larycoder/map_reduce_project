@@ -4,9 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import usth.master.common.ClientTransfer;
-import usth.master.worker.Daemon;
 
 /**
  * Load file and distribute it to Map servers.
