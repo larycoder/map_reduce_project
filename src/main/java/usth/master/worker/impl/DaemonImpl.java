@@ -59,5 +59,6 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
         }
 
         m.executeMap(input, output);
+        cb.completed();
     }
 }
