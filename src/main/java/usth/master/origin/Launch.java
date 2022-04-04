@@ -12,6 +12,7 @@ import java.util.UUID;
 import usth.master.app.MapReduce;
 import usth.master.common.CallBack;
 import usth.master.common.ClientTransfer;
+import usth.master.common.impl.CallBackImpl;
 import usth.master.worker.Daemon;
 
 /**
@@ -21,6 +22,16 @@ public class Launch {
     private List<Map<String, String>> hosts;
     private Map<String, String> hostFiles;
     private String rootDir;
+
+    /**
+     * Model to hold host with blockin and blockout file name.
+     * */
+    class DataModel {
+        public String blockin;
+        public String blockout;
+        public String localFile;
+        public Map<String, String> host;
+    }
 
     /**
      * @param hosts list of mapper hosts
@@ -76,6 +87,7 @@ public class Launch {
      * */
     public String run(MapReduce m, CallBack cb) {
         List<String> localFiles = new ArrayList<String>();
+        List<DataModel> datas = new ArrayList<DataModel>();
 
         // execute and collect result
         for (Map<String, String> host : hosts) {
@@ -93,11 +105,22 @@ public class Launch {
                 // process and get result
                 Daemon worker = (Daemon) Naming.lookup(rmiUrl);
                 worker.call(m, hostFileName, hostFileResultName, cb);
-                if (pullFile(host, hostFileResultName, fileName)) {
-                    localFiles.add(fileName);
-                }
+                DataModel model = new DataModel();
+                model.blockout = hostFileResultName;
+                model.localFile = fileName;
+                model.host = host;
+                datas.add(model);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+        CallBackImpl cbImpl = (CallBackImpl) cb;
+        cbImpl.waitForAll();
+
+        // save back data
+        for (DataModel model : datas) {
+            if (pullFile(model.host, model.blockout, model.localFile)) {
+                localFiles.add(model.localFile);
             }
         }
 
