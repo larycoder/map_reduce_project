@@ -13,7 +13,7 @@ import usth.master.worker.Daemon;
 public class DaemonImpl extends UnicastRemoteObject implements Daemon {
     public static final String root = "data";
 
-    protected DaemonImpl() throws RemoteException {}
+    public DaemonImpl() throws RemoteException {}
 
     /**
      * Open file and socket to receive block of data.
