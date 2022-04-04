@@ -48,8 +48,8 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
     public void call(MapReduce m, String blockin, String blockout, CallBack cb)
     throws RemoteException {
         // prepare
-        String input = root + "/" + blockin;
-        String output = root + "/" + blockout;
+        final String input = root + "/" + blockin;
+        final String output = root + "/" + blockout;
 
         File fileOut = new File(output);
         try {
@@ -58,7 +58,20 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
             e.printStackTrace();
         }
 
-        m.executeMap(input, output);
-        cb.completed();
+        // execute map process in thread
+        final MapReduce finalM = m;
+        final CallBack finalCb = cb;
+        Runnable runner = new Runnable() {
+            public void run() {
+                try {
+                    finalM.executeMap(input, output);
+                    finalCb.completed();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(runner);
+        thread.run();
     }
 }
