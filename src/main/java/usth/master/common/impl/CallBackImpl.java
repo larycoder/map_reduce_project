@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import usth.master.common.CallBack;
 
-class CallBackImpl extends UnicastRemoteObject implements CallBack {
+public class CallBackImpl extends UnicastRemoteObject implements CallBack {
     int nbNode;
 
     public CallBackImpl(int nbNode) throws RemoteException {

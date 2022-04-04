@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 import usth.master.app.MapReduce;
 
-class WordCount implements MapReduce {
+public class WordCount implements MapReduce {
     public static final String SEPARATOR = " - ";
 
     public void executeMap(String blockin, String blockout) {
