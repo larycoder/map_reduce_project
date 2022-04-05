@@ -84,7 +84,7 @@ public class Driver {
             Map<String, String> mapperFiles = splitter.run();
 
             CallBack cb = new CallBackImpl(hosts.size());
-            Launch launcher = new Launch(hosts, mapperFiles, "data");
+            Launch launcher = new Launch(hosts, mapperFiles, "output");
             return launcher.run(app, cb);
         } catch (Exception e) {
             e.printStackTrace();
