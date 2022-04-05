@@ -3,6 +3,7 @@ package usth.master.origin;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,15 +57,9 @@ public class Launch {
     public boolean pullFile(
         Map<String, String> host, String hostFileName, String fileName) {
         String data = ClientTransfer.pull(host, hostFileName);
-        String localFileName = rootDir + "/" + fileName;
 
         try {
-            File rootDirProp = new File(rootDir);
-            if (!rootDirProp.exists()) {
-                rootDirProp.mkdirs();
-            }
-
-            File localFile = new File(localFileName);
+            File localFile = new File(fileName);
             if (!localFile.exists()) {
                 localFile.createNewFile();
             }
@@ -92,6 +87,12 @@ public class Launch {
         // execute and collect result
         for (Map<String, String> host : hosts) {
             try {
+                // Prepare output directory
+                File root = new File(rootDir);
+                if(!root.exists()) {
+                    root.mkdirs();
+                }
+
                 // Prepare name for processing
                 String fileId = host.get("host") + ":" + host.get("port");
                 String hostFileName = hostFiles.get(fileId);
@@ -126,6 +127,7 @@ public class Launch {
 
         String finalResult = rootDir + "/" + UUID.randomUUID().toString();
         m.executeReduce(localFiles, finalResult);
+        System.out.println("Done execution...");
         return finalResult;
     }
 }

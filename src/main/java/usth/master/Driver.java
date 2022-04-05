@@ -103,7 +103,8 @@ public class Driver {
                 driver.bootDaemon(inputs[0], Integer.parseInt(inputs[1]));
             } else if (args[0].equals("-e")) {
                 MapReduce app = new WordCount();
-                driver.bootApp(args[1], args[2], app);
+                String result = driver.bootApp(args[1], args[2], app);
+                System.out.println("Result file: " + result);
             } else {
                 usage();
             }
