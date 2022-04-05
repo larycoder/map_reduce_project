@@ -1,6 +1,7 @@
 package usth.master.common;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -32,10 +33,18 @@ public class ClientTransfer {
             int port = server.upload(file);
             Socket svc = new Socket(host.get("host"), port);
 
-            System.out.println("Push data to server file: " + file);
             OutputStream os = svc.getOutputStream();
-            os.write(data.getBytes());
+            InputStream is = new ByteArrayInputStream(data.getBytes());
+
+            byte[] buffer = new byte[1000];
+            int len;
+            while((len = is.read(buffer)) > 0) {
+                os.write(buffer, 0, len);
+            }
+
+            is.close();
             os.close();
+            svc.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +74,6 @@ public class ClientTransfer {
 
             String result = "";
             String line;
-            System.out.println("Pull data from server file: " + file);
             while((line = br.readLine()) != null) {
                 result += line + "\n";
             }

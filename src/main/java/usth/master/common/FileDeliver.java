@@ -42,13 +42,13 @@ public class FileDeliver extends Thread {
             Socket client = ss.accept();
 
             File file = new File(fileName);
-            if(!file.exists()) file.createNewFile();
+            if (!file.exists()) file.createNewFile();
 
             InputStream is;
             OutputStream os;
 
-            System.out.println("Transfer file process...");
-            if(opt) {
+            System.out.println("Deliver access file: " + fileName);
+            if (opt == true) {
                 is = client.getInputStream();
                 os = new FileOutputStream(file);
             } else {
@@ -58,15 +58,15 @@ public class FileDeliver extends Thread {
 
             byte[] data = new byte[1000];
             int len;
-            while((len = is.read(data)) > 0) {
-                System.out.println(len);
+            while ((len = is.read(data)) > 0) {
                 os.write(data, 0, len);
+                os.flush();
             }
 
             is.close();
             os.close();
-            ss.close();
             client.close();
+            ss.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
