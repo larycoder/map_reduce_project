@@ -74,11 +74,17 @@ public class Split {
 
         // add data to servers
         int dataPerHost = (dataNum + dataNum % hostNum) / hostNum;
+
+        // inform for log
+        System.out.println("Worker size: " + hostNum);
+        System.out.println("Data size: " + dataNum);
+        System.out.println("Data per worker: " + dataPerHost);
+
         for (int h = 0; h < hostNum; h++) {
             // merge line to data
             int count = dataPerHost;
             String data = "";
-            while (count-- == 0 || lines.isEmpty()) {
+            while (count-- > 0 && !lines.isEmpty()) {
                 data += lines.remove(0);
                 data += "\n";
             }

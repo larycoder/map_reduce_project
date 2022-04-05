@@ -3,7 +3,6 @@ package usth.master.origin;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.nio.file.Paths;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +88,7 @@ public class Launch {
             try {
                 // Prepare output directory
                 File root = new File(rootDir);
-                if(!root.exists()) {
+                if (!root.exists()) {
                     root.mkdirs();
                 }
 
