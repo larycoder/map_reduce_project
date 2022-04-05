@@ -22,7 +22,7 @@ public class WordCount implements MapReduce {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(new FileInputStream(blockin)));
             BufferedWriter bw = new BufferedWriter(
-                    new OutputStreamWriter(new FileOutputStream(blockin)));
+                    new OutputStreamWriter(new FileOutputStream(blockout)));
 
             String line;
             while((line = br.readLine()) != null) {
