@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,6 +106,7 @@ public class Driver {
                 MapReduce app = new WordCount();
                 String result = driver.bootApp(args[1], args[2], app);
                 System.out.println("Result file: " + result);
+                System.exit(0);
             } else {
                 usage();
             }
