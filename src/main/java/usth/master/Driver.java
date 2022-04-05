@@ -27,14 +27,14 @@ public class Driver {
     private static String usage() {
         StringBuilder builder = new StringBuilder();
         builder.append("Map reduce program...\n")
-        .append("Usage: java Driver [OPT] [ARG0..ARG2]\n")
+        .append("Usage: java Driver [OPT] [bind_name | host_file input_file]\n")
         .append("\n")
         .append("OPT:\n")
         .append(" -d run Daemon process\n")
         .append(" -e run word count app\n")
         .append("\n")
         .append("ARG:\n")
-        .append(" bind_name:bind_port name and port to bind Daemon\n")
+        .append(" bind_name: bind_port name and port to bind Daemon\n")
         .append(" host_file: file contains list of mapper hosts\n")
         .append("            with each line is a mapper and have pattern\n")
         .append("            [host:port:name]\n")
@@ -92,7 +92,7 @@ public class Driver {
     }
 
     public static void main( String[] args ) {
-        if (args.length != 2) {
+        if (args.length != 2 && args.length != 3) {
             System.out.println(usage());
         } else {
             Driver driver = new Driver();
