@@ -32,6 +32,7 @@ public class ClientTransfer {
             int port = server.upload(file);
             Socket svc = new Socket(host.get("host"), port);
 
+            System.out.println("Push data to server file: " + file);
             OutputStream os = svc.getOutputStream();
             os.write(data.getBytes());
             os.close();
@@ -64,6 +65,7 @@ public class ClientTransfer {
 
             String result = "";
             String line;
+            System.out.println("Pull data from server file: " + file);
             while((line = br.readLine()) != null) {
                 result += line + "\n";
             }

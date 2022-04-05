@@ -40,7 +40,6 @@ public class FileDeliver extends Thread {
         try {
             // accept only one connection
             Socket client = ss.accept();
-            ss.close();
 
             File file = new File(fileName);
             if(!file.exists()) file.createNewFile();
@@ -48,6 +47,7 @@ public class FileDeliver extends Thread {
             InputStream is;
             OutputStream os;
 
+            System.out.println("Transfer file process...");
             if(opt) {
                 is = client.getInputStream();
                 os = new FileOutputStream(file);
@@ -59,11 +59,13 @@ public class FileDeliver extends Thread {
             byte[] data = new byte[1000];
             int len;
             while((len = is.read(data)) > 0) {
+                System.out.println(len);
                 os.write(data, 0, len);
             }
 
             is.close();
             os.close();
+            ss.close();
             client.close();
         } catch (IOException e) {
             e.printStackTrace();
