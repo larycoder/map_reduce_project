@@ -19,6 +19,7 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
      * Open file and socket to receive block of data.
      * */
     public int upload(String file) throws RemoteException {
+        System.out.println("Receive upload request...");
         try {
             FileDeliver fileTransfer = new FileDeliver(root + "/" + file, true);
             Integer port = fileTransfer.openServer();
@@ -34,6 +35,7 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
      * Open file and socket to send block of data.
      * */
     public int download(String file) throws RemoteException {
+        System.out.println("Receive download request...");
         try {
             FileDeliver fileTransfer = new FileDeliver(root + "/" + file, false);
             Integer port = fileTransfer.openServer();
@@ -47,6 +49,8 @@ public class DaemonImpl extends UnicastRemoteObject implements Daemon {
 
     public void call(MapReduce m, String blockin, String blockout, CallBack cb)
     throws RemoteException {
+        System.out.println("Receive mapping request...");
+
         // prepare
         final String input = root + "/" + blockin;
         final String output = root + "/" + blockout;

@@ -12,7 +12,7 @@ public class CallBackImpl extends UnicastRemoteObject implements CallBack {
         this.nbNode = nbNode;
     }
 
-    public void completed() throws RemoteException {
+    public synchronized void completed() throws RemoteException {
         notify();
     }
 
