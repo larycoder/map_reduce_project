@@ -36,6 +36,7 @@ public class Driver {
         .append("\n")
         .append("ARG:\n")
         .append(" bind_name: bind_port name and port to bind Daemon\n")
+        .append("            following pattern [name:port]\n")
         .append(" host_file: file contains list of mapper hosts\n")
         .append("            with each line is a mapper and have pattern\n")
         .append("            [host:port:name]\n")
