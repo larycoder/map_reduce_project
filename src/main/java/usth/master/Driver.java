@@ -78,6 +78,7 @@ public class Driver {
                 hostMap.put("name", hostInfo[2]);
                 hosts.add(hostMap);
             }
+            br.close();
 
             Split splitter = new Split(hosts, inputFile);
             Map<String, String> mapperFiles = splitter.run();
